@@ -6,10 +6,11 @@
   </head>
   <body>
     <p>This is a simple numerology application. It calculates your Expression, Soul, Persona, and Life Numbers according to the rules provided on various numerology sites on the web.</p>
-    <p>If you have a consonant in your name that is pronounced as a vowel (like the 'y' at the end of 'Larry'), place an exclamation point in front of it (ie, "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, but there aren't any circumstances in which a "real" numerologist would do this.</p>
+    <p>If you have a consonant in your name that is pronounced as a vowel (mostly the 'y' in names like  'Tony' or 'Lynn'), place an exclamation point in front of it (i.e., "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, but there aren't any circumstances in which a "real" numerologist would do this.</p>
   	<form action="/" method="post">
   		name: <input type="text" placeholder="your name" name="name"><br>
-      birthday: <input type="date" name="birthday"> (defaults to current date if none is selected.)
+      birthday: <input type="date" name="birthday"> (defaults to current date if none is selected.)<br>
+      <input type="submit">
     </form>
     <%= erb(:_numbers, :layout => false) %>
   </body>
