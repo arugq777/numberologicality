@@ -1,0 +1,19 @@
+doctype 5
+
+html
+  head
+    link rel="stylesheet" type="text/css" href="/style.css"
+  body
+  	form action="/" method="post"
+  		input type="text" placeholder="your name" name="name"
+      input type="date" name="birthday"
+    ul
+      li Expression Number
+        - @chump.numbers[:name][:expr]
+      li Soul Number
+        - @chump.numbers[:name][:soul]
+      li Persona Number
+        - @chump.numbers[:name][:pers]
+      li Life Path Number
+        - @chump.numbers[:life_path]
+    

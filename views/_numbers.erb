@@ -1,0 +1,8 @@
+<% @chump ||= Person.new( "", "") %>
+<h3>Numbers for <%= @chump.name %>, born on <%= @chump.birthday %></h3>
+
+<ul>
+  <% @chump.numbers[:main].each do |k,v| %>
+  	<li><%= "#{k.to_s} Number: #{v.last}" %></li>
+  <%end%>
+</ul>
