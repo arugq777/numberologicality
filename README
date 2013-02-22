@@ -4,6 +4,6 @@ It calculates Life Path, Destiny, Soul Urge, and Persona numbers. Consonants and
 
 I haven't included interpretations for the various meanings of one's numbers, because A) I'm not a numerologist, and B) I don't actually care or believe in this stuff :-P A google search should suffice if anyone actually wants to find out what the numbers supposedly mean.
 
-On Heroku: secret-cove-4163.heroku.com
+On Heroku: http://tranquil-mesa-2581.herokuapp.com/
 
 TODO: I should probably write tests. I probably won't, since the program does what it should and I don't have any intention of changing it, but I probably should.
