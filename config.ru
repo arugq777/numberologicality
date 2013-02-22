@@ -3,5 +3,5 @@ require 'bundler'
 
 Bundler.require
 
-require './app.rb'
+require './numberologicality.rb'
 run Sinatra::Application
