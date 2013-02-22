@@ -2,8 +2,8 @@ Numberologicalicality is a simple numerology calculator I wrote, because I thoug
 
 It calculates Life Path, Destiny, Soul Urge, and Persona numbers. Consonants and vowels can have their classifications switched by placing a "!" in front of the letter you want to change. For instance, "Timm!y" would have the "y" counted as a vowel, rather than as a consonant. If you want to go nuts with it, "!T!i!m!m!y" would calculate "tmmy" as vowels and "i" as a consonant.
 
-I haven't included interpretations for the various meanings of one's numbers, because A) I'm not a numerologist, and B) I don't actually care or believe in this stuff :-P A google search should suffice if anyone actually wants to find out what this stuff supposedly means.
+I haven't included interpretations for the various meanings of one's numbers, because A) I'm not a numerologist, and B) I don't actually care or believe in this stuff :-P A google search should suffice if anyone actually wants to find out what the numbers supposedly mean.
 
-On Heroku:
+On Heroku: secret-cove-4163.heroku.com
 
 TODO: I should probably write tests. I probably won't, since the program does what it should and I don't have any intention of changing it, but I probably should.
