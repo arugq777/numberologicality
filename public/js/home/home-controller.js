@@ -35,9 +35,6 @@ angular.module('numberologicality')
 	"vowel" : [],
 	"consonant" : [],
 	"birthdate" : [],
-    // "wholeNameAlt" : [],
-    // "vowelAlt" : [],
-    // "consonantAlt" : []
   };
 
   $scope.viewStrings = {
@@ -49,15 +46,12 @@ angular.module('numberologicality')
 	"wCalculationString" : "",
 	"cCalculationString" : "",
 	"vCalculationString" : "",
-    // "altWCalculationString":"",
-    // "altCCalculationString":"",
-    // "altVCalculationString":""
   };
 
   var ns = $scope.viewStrings;
   var nm = $scope.modelData;
 
-  $scope.update = function(name){
+  $scope.updateName = function(name){
 	nm.rawInput = name;
 
 	cleanNameInputString();
@@ -65,6 +59,10 @@ angular.module('numberologicality')
 	
 	calculateAllNumbers();
 	formatAllNumStrings();
+  };
+  
+  $scope.updateDate = function(date){
+
   };
 
   function cleanNameInputString(){
@@ -133,15 +131,9 @@ angular.module('numberologicality')
     nm.wholeName = [];
     nm.consonant = [];
     nm.vowel = [];
-    // nm.wholeNameAlt = [];
-    // nm.consonantAlt = [];
-    // nm.vowelAlt = [];
     calculateNumber( ns.vNumbers + ns.cNumbers, nm.wholeName);
     calculateNumber( ns.cNumbers, nm.consonant);
     calculateNumber( ns.vNumbers, nm.vowel);
-    // calculateNumberFromString(ns.name, nm.wholeNameAlt);
-    // calculateNumberFromString(ns.consonants, nm.consonantAlt);
-    // calculateNumberFromString(ns.vowels, nm.vowelAlt);    
   }
 
   var masterNumbers = [11,22,33];
@@ -165,7 +157,6 @@ angular.module('numberologicality')
       total += $scope.letters.values[str[i]];
     }
     array.push(total);
-    //console.log("cnfs: "+array);
     if(total > 9 && masterNumbers.indexOf(total) == -1 ){
       reduce(total, array);
     }
@@ -186,24 +177,16 @@ angular.module('numberologicality')
     ns.wCalculationString = formatNumString(nm.wholeName);
     ns.cCalculationString = formatNumString(nm.consonant);
     ns.vCalculationString = formatNumString(nm.vowel);
-    // ns.altWCalculationString = formatNumString(nm.wholeNameAlt);
-    // ns.altCCalculationString = formatNumString(nm.consonantAlt);
-    // ns.altVCalculationString = formatNumString(nm.vowelAlt);    
-    // console.log("w:" + ns.wCalculationString);
-    // console.log("c:" + ns.cCalculationString);
-    // console.log("v:" + ns.vCalculationString);
   }
 
   function formatNumString(ary){
     var str = "";
-    //console.log("ary: " + ary);
     for(var i = 0; i < ary.length; i++){
       str += ary[i];
       if( !((i+1) == ary.length) ){
         str += " >> ";
       }
     }
-    //console.log(str);
     return str;
   }
 
