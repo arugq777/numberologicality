@@ -1,0 +1,78 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Generic Free Numerology Calculator!</h1>
+            <p class="lead">Enter your name below.</p>
+
+            <p>
+             [ insert text here ] !
+            </p>
+        </div>
+    </div>
+
+    <div class="row" ng-controller="NumbersController as numbers" >
+		<div class="row">
+			<div class='col-md-7 col-lg-8 text-center' style="font-family:monospace; white-space:pre-wrap;">
+{{viewStrings.name}}
+{{viewStrings.consonants}}
+{{viewStrings.cNumbers}}
+{{viewStrings.vowels}}
+{{viewStrings.vNumbers}}<br>
+			</div>
+			<div class='col-md-5 col-lg-4 text-center' style="font-family:monospace; white-space:pre-wrap;">
+{{viewStrings.wCalculationString}}
+{{viewStrings.cCalculationString}}
+{{viewStrings.vCalculationString}}
+{{viewStrings.altWCalculationString}}
+{{viewStrings.altCCalculationString}}
+{{viewStrings.altVCalculationString}}
+			</div>
+		</div>
+
+	    <form method="post" action="/">
+	    	<div class="row">
+	    		<div class="col-lg-6 col-md-8">
+	    			<label for="name">
+	    				name: 
+	    			</label>
+	    			<input class="col-xs-12" type="text" placeholder="your name" name="name" ng-model="nameIn" ng-change="update(nameIn)">
+    			    <div class="row numbers">
+			    	</div>
+			    	<div class="row wholename">
+			    	</div>
+			    	<div class="row consonants">
+			    		
+			    	</div>
+			    	<div class="row vowels">
+			    		
+			    	</div>	
+	    		</div>
+	    		<div class="col-md-4 ">
+	    			<label for="birthdate">	
+	    				birthdate (defaults to current date):
+	    			</label>
+	    			<input class="col-xs-12"type="date" name="birthdate" placeholder="dd/mm/yyyy"> 
+	    		</div>
+	    	</div>
+	    	<div class="row">
+	    		<input class="btn" type="submit">
+	    	</div>
+	    </form>
+    </div>
+
+    <div class="row">
+    	<div class="col-lg-6 col-md-8 col-xs-12">
+		    This is a simple numerology application. Given a name and Birthdate, it calculates: 
+		    <ul>
+		      <li>Whole Name Number (known as the Destiny Number or Expression Number)</li>
+		      <li>Vowel Number (known as the Heart's Desire Number or Soul Urge Number)</li>
+		      <li>Consonant Number (known as the Expression Number or Persona Number)</li>
+		      <li>Birthdate Number (known as the Life Path Number or Destiny Number)</li>
+		    </ul> 
+		       
+		    <p>As you might gather from the parenthetical notes, different sources in print and around the web are inconsistent with regards to what to call the numbers, so I just set those aside and gave each a more self-explanatory name.</p>
+		    <p>If you have a consonant in your name that is pronounced as a vowel (mostly the 'y' in names like  'Tony' or 'Lynn'), place an exclamation point in front of it (i.e., "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, but there aren't any circumstances in which a "real" numerologist would do this.</p>
+    	</div>
+    </div>
+
+</div>

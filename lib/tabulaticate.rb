@@ -3,7 +3,7 @@ class Tabulaticate
   @@master_numbers = [11, 22, 33]
 
   def self.parse(name)
-    @total_count, @vowel_count, @consonant_count = Hash.new(0), Hash.new(0), Hash.new(0)
+    @total_count, @vowel_count, @consonant_count = Hash.new(0), Hash.new(0),Hash.new(0)
     @l = Letter.new("")
 
     n = name.downcase.delete(" ").split(//).map {|i| i.to_sym}
@@ -12,13 +12,13 @@ class Tabulaticate
       if @l.is_letter?
         @total_count[ @l.letter ] += 1
         if @l.is_vowel?
-          unless n[i-1] == "!".to_sym
+          unless n[i-1] == :"!"
             @vowel_count[ @l.letter ] += 1
           else
             @consonant_count[ @l.letter ] += 1
           end 
         elsif @l.is_consonant?
-          unless n[i-1] == "!".to_sym
+          unless n[i-1] == :"!"
             @consonant_count[ @l.letter ] += 1
           else
             @vowel_count[ @l.letter ] += 1
@@ -67,13 +67,13 @@ class Tabulaticate
 
     #different sources call the same numbers different things
     #name number/expression number/destiny number
-    name_numbers[:"Expression"] = tabulate(@total_count)
+    name_numbers[:name] = tabulate(@total_count)
     
     #soul number/heart's desire number
-    name_numbers[:"Soul"] = tabulate(@vowel_count)
+    name_numbers[:vowel] = tabulate(@vowel_count)
     
     #personality number/persona number
-    name_numbers[:"Persona"] = tabulate(@consonant_count)
+    name_numbers[:consonant] = tabulate(@consonant_count)
     return name_numbers
   end
 
@@ -97,6 +97,6 @@ class Tabulaticate
 
   def self.process(person)
     person.numbers[:main] = calculate_name(person.name)
-    person.numbers[:main][:"Life Path"] = calculate_life_path(person.birthday)
+    person.numbers[:main][:birthdate] = calculate_life_path(person.birthday)
   end
 end

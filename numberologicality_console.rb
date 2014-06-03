@@ -1,6 +1,7 @@
-load "./lib/letter.rb"
-load "./lib/tabulaticate.rb"
-load "./lib/person.rb"
+
+require_relative "lib/letter.rb"
+require_relative "lib/tabulaticate.rb"
+require_relative "lib/person.rb"
 
 print "Input full name: "
 name = gets.chomp

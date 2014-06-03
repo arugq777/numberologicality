@@ -47,4 +47,7 @@ class Letter
       return key if value.include?(@letter)
     end
   end
+  def all
+    return @@all
+  end
 end

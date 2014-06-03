@@ -1,9 +1,8 @@
-load "./lib/letter.rb"
-load "./lib/tabulaticate.rb"
-load "./lib/person.rb"
+require_relative "lib/letter.rb"
+require_relative "lib/tabulaticate.rb"
+require_relative "lib/person.rb"
 require "date"
 require "sinatra"
-require "sinatra/partial"
 #require "slim"
 #require "sass"
 
@@ -12,7 +11,7 @@ get '/' do
 end
 
 post '/' do
-  @chump = Person.new(params[:name], params[:birthday])
+  @chump = Person.new(params[:name], params[:birthdate])
   Tabulaticate.process(@chump)
   erb :index
 end

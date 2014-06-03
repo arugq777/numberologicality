@@ -5,13 +5,22 @@
     <link rel="stylesheet" type="text/css" href="/style.css">
   </head>
   <body>
-    <p>This is a simple numerology application. It calculates your Expression, Soul, Persona, and Life Numbers according to the rules provided on various numerology sites on the web.</p>
-    <p>If you have a consonant in your name that is pronounced as a vowel (mostly the 'y' in names like  'Tony' or 'Lynn'), place an exclamation point in front of it (i.e., "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, but there aren't any circumstances in which a "real" numerologist would do this.</p>
-  	<form action="/" method="post">
-  		name: <input type="text" placeholder="your name" name="name"><br>
-      birthday: <input type="date" name="birthday"> (defaults to current date if none is selected.)<br>
+    <form action="/" method="post">
+      name: <input type="text" placeholder="your name" name="name"><br>
+      birthdate: <input type="date" name="birthdate"> (defaults to current date if none is selected.)<br>
       <input type="submit">
     </form>
-    <%= erb(:_numbers, :layout => false) %>
+    <%= erb :_numbers %>
+    <h1><input type="text" style="text-align:center;"></h1>
+    This is a simple numerology application. Given a name and Birthdate, it calculates: 
+    <ul>
+      <li>Whole Name Number (also called the Destiny Number or Expression Number)</li>
+      <li>Vowel Number (also called the Heart's Desire Number or Soul Urge Number)</li>
+      <li>Consonant Number (also called the Expression Number or Persona Number)</li>
+      <li>Birthdate Number (also called the Life Path Number or Destiny Number)</li>
+    </ul> 
+       
+    <p>As you might gather from the parenthetical notes, different sources in print and around the web are inconsistent with regards to what to call the numbers, so I just set those aside and gave each a more self-explanatory name.</p>
+    <p>If you have a consonant in your name that is pronounced as a vowel (mostly the 'y' in names like  'Tony' or 'Lynn'), place an exclamation point in front of it (i.e., "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, but there aren't any circumstances in which a "real" numerologist would do this.</p>
   </body>
 </html>
