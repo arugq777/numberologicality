@@ -31,6 +31,8 @@ angular.module('numberologicality')
   $scope.modelData = {
 	"rawInput":"",
 	"input":"",
+    "rawDateInput": "",
+    "dateInput" : "",
 	"wholeName" : [],
 	"vowel" : [],
 	"consonant" : [],
@@ -41,11 +43,13 @@ angular.module('numberologicality')
 	"name":"",
 	"vowels":"",
 	"consonants":"",
+    "birthdate": "",
 	"vNumbers": "",
 	"cNumbers": "",
 	"wCalculationString" : "",
 	"cCalculationString" : "",
 	"vCalculationString" : "",
+    "dCalculationString" : ""
   };
 
   var ns = $scope.viewStrings;
@@ -60,9 +64,15 @@ angular.module('numberologicality')
 	calculateAllNumbers();
 	formatAllNumStrings();
   };
-  
-  $scope.updateDate = function(date){
 
+  $scope.updateDate = function(date){
+    nm.rawDateInput = date;
+    nm.dateInput = new Date(date);
+    console.log(nm.dateInput);
+    ns.birthdate = new Date(date).toISOString();
+    nm.birthdate = [];
+    calculateBirthdateNumber(nm.dateInput, nm.birthdate);
+    ns.dCalculationString = formatNumString(nm.birthdate);
   };
 
   function cleanNameInputString(){
@@ -156,6 +166,20 @@ angular.module('numberologicality')
     for(var i=0; i < str.length; i++){
       total += $scope.letters.values[str[i]];
     }
+    array.push(total);
+    if(total > 9 && masterNumbers.indexOf(total) == -1 ){
+      reduce(total, array);
+    }
+  }
+
+  function calculateBirthdateNumber(date, array){
+    var m = [], d = [], y = [], total = 0;
+    var d = date.toJSON().toString().split('T').shift().split('-')
+    reduce(d[0], y);
+    reduce(d[1], m);
+    reduce(d[2], d);
+    total = y[y.length-1] + m[m.length-1] + d[d.length-1];
+    console.log(""+m+" "+d+" "+y+" "+total);
     array.push(total);
     if(total > 9 && masterNumbers.indexOf(total) == -1 ){
       reduce(total, array);

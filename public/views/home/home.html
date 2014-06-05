@@ -23,6 +23,10 @@
 {{viewStrings.wCalculationString}}
 {{viewStrings.cCalculationString}}
 {{viewStrings.vCalculationString}}
+{{viewStrings.dCalculationString}}
+{{viewStrings.birthdate}}
+{{modelData.birthdate}}
+{{modelData.rawDateInput}}
 			</div>
 		</div>
 
@@ -32,7 +36,7 @@
 	    			<label for="name">
 	    				name: 
 	    			</label>
-	    			<input class="col-xs-12" type="text" placeholder="your name" name="name" ng-model="nameIn" ng-change="updateName(nameIn)">
+	    			<input class="col-xs-12" type="text" placeholder="your name" name="name" ng-model="nameIn" ng-change="updateName(nameIn)" required>
     			    <div class="row numbers">
 			    	</div>
 			    	<div class="row wholename">
@@ -48,7 +52,7 @@
 	    			<label for="birthdate">	
 	    				birthdate (defaults to current date):
 	    			</label>
-	    			<input class="col-xs-12"type="date" name="birthdate" placeholder="dd/mm/yyyy"> 
+	    			<input class="col-xs-12" type="date" name="birthdate" placeholder="ex: dd/mm/yyyy" ng-model="dateIn" ng-change="updateDate(dateIn)" required> 
 	    		</div>
 	    	</div>
 	    	<div class="row">
