@@ -9,4 +9,6 @@ I haven't included interpretations for the various meanings of one's numbers, be
 http://tranquil-mesa-2581.herokuapp.com/
 
 ##TODO
-I should probably write tests. I probably won't, since the program does what it should and I don't have any intention of changing it, but I probably should.
+- I should probably write tests.
+- Add some basic databse functionality to the back end
+- Tweak the UI

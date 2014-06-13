@@ -1,4 +1,5 @@
 class Person
+  #include Mongoid::Document
   attr_accessor :name, :birthday, :numbers
   def initialize(name, birthday)
     @name, @numbers = name, {}

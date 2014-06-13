@@ -11,7 +11,7 @@ get '/' do
 end
 
 post '/' do
-  @chump = Person.new(params[:name], params[:birthdate])
+  @chump = Person.new(params[:nameinput], params[:dateinput])
   Tabulaticate.process(@chump)
   erb :index
 end
