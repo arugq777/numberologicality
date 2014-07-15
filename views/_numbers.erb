@@ -1,8 +1,10 @@
-<% @chump ||= Person.new( "", "") %>
+<% @chump ||= Person.new("","").create_profile %>
 <h3>Numbers for <%= @chump.name %>, born on <%= @chump.birthday %></h3>
 
 <ul>
-  <% @chump.numbers[:main].each do |k,v| %>
-  	<li><%= "#{k.to_s} Number: #{v.last}" %></li>
+  <% [:whole_name, :vowel, :consonant, :birthdate].each do |k| %>
+    <li><%= "#{k.to_s.gsub('_',' ').capitalize}: #{@chump[k].last}" %>.<br> 
+        <%= "#{@kindred[k].count} others in the database have this number." %>
+    </li>
   <%end%>
 </ul>

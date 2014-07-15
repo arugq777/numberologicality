@@ -1,0 +1,9 @@
+<%= "#{@kindred[:birthdate].count} have the number #{@chump.birthdate.last}:" %>
+
+<ul>
+  <% @kindred[:birthdate].each do |b|%>
+    <li>
+      <%= b.name %>
+    </li>
+  <% end %>
+</ul>

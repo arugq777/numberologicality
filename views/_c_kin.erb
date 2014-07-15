@@ -1,0 +1,9 @@
+<%= "#{@kindred[:consonant].count} have the number #{@chump.consonant.last}:" %>
+
+<ul>
+  <% @kindred[:consonant].each do |c|%>
+    <li>
+      <%= c.name %>
+    </li>
+  <% end %>
+</ul>

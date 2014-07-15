@@ -11,7 +11,10 @@
       <input type="submit">
     </form>
     <%= erb :_numbers %>
-    <h1><input type="text" style="text-align:center;"></h1>
+    <%= erb :_n_kin %>
+    <%= erb :_v_kin %>
+    <%= erb :_c_kin %>
+    <%= erb :_b_kin %>
     This is a simple numerology application. Given a name and Birthdate, it calculates: 
     <ul>
       <li>Whole Name Number (also called the Destiny Number or Expression Number)</li>
@@ -21,6 +24,6 @@
     </ul> 
        
     <p>As you might gather from the parenthetical notes, different sources in print and around the web are inconsistent with regards to what to call the numbers, so I just set those aside and gave each a more self-explanatory name.</p>
-    <p>If you have a consonant in your name that is pronounced as a vowel (mostly the 'y' in names like  'Tony' or 'Lynn'), place an exclamation point in front of it (i.e., "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, but there aren't any circumstances in which a "real" numerologist would do this.</p>
+    <p>If you have a consonant in your name that is pronounced as a vowel (typically the 'y' in names like  'Tony' or 'Lynn'), place an exclamation point in front of it (i.e., "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, but there aren't any circumstances in which a "real" numerologist would do this.</p>
   </body>
 </html>

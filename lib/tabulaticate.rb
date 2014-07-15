@@ -67,7 +67,7 @@ class Tabulaticate
 
     #different sources call the same numbers different things
     #name number/expression number/destiny number
-    name_numbers[:name] = tabulate(@total_count)
+    name_numbers[:whole_name] = tabulate(@total_count)
     
     #soul number/heart's desire number
     name_numbers[:vowel] = tabulate(@vowel_count)
@@ -96,7 +96,7 @@ class Tabulaticate
   #    4) bmonth + byear
 
   def self.process(person)
-    person.numbers[:main] = calculate_name(person.name)
-    person.numbers[:main][:birthdate] = calculate_life_path(person.birthday)
+    person.numbers = calculate_name(person.name)
+    person.numbers[:birthdate] = calculate_life_path(person.birthday)
   end
 end
