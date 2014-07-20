@@ -20,23 +20,23 @@ class Person
   end
 
   def to_hash
-    h = {}
+    hashed = {}
     keys = [:name, :raw_name_input, :birthday, :raw_date_input, 
             :whole_name, :vowel, :consonant, :birthdate]
     values = [@name, @raw_name_input, @birthday, @raw_date_input, 
               @numbers[:whole_name], @numbers[:vowel], @numbers[:consonant], @numbers[:birthdate]]
     keys.each_with_index do |k, i|
-      h[k] = values[i]
+      hashed[k] = values[i]
     end
-    # h[:name] = @name
-    # h[:raw_name_input] = @raw_name_input
-    # h[:birthday] = @birthday
-    # h[:raw_date_input] = @raw_date_input 
-    # h[:whole_name] = @numbers[:whole_name]
-    # h[:vowel] = @numbers[:vowel]
-    # h[:consonant] = @numbers[:consonant]
-    # h[:birthdate] = @numbers[:birthdate]
-    h
+    # hashed[:name] = @name
+    # hashed[:raw_name_input] = @raw_name_input
+    # hashed[:birthday] = @birthday
+    # hashed[:raw_date_input] = @raw_date_input 
+    # hashed[:whole_name] = @numbers[:whole_name]
+    # hashed[:vowel] = @numbers[:vowel]
+    # hashed[:consonant] = @numbers[:consonant]
+    # hashed[:birthdate] = @numbers[:birthdate]
+    hashed
   end
 
   # def process_view_strings

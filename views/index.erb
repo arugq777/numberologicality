@@ -10,11 +10,13 @@
       birthdate: <input type="date" name="dateinput"> (defaults to current date if none is selected.)<br>
       <input type="submit">
     </form>
-    <%= erb :_numbers %>
-    <%= erb :_n_kin %>
-    <%= erb :_v_kin %>
-    <%= erb :_c_kin %>
-    <%= erb :_b_kin %>
+    <% unless @kindred.nil? %>
+      <%= erb :_numbers %>
+      <%= erb :_n_kin %>
+      <%= erb :_v_kin %>
+      <%= erb :_c_kin %>
+      <%= erb :_b_kin %>
+    <% end %>
     This is a simple numerology application. Given a name and Birthdate, it calculates: 
     <ul>
       <li>Whole Name Number (also called the Destiny Number or Expression Number)</li>

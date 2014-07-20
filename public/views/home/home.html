@@ -26,7 +26,7 @@
 	    			<label for="name">
 	    				name: 
 	    			</label>
-	    			<input class="col-xs-12" type="text" placeholder="your name" name="nameinput" ng-model="ni" ng-change="updateName(ni)" ng-pattern="/^[a-zA-Z0-9!\s]+$/" required>
+	    			<input class="col-xs-12" type="text" placeholder="your name" name="nameinput" ng-model="ni" ng-change="updateName(ni)" ng-pattern="/^[a-zA-Z!\s]+$/" required>
 	    			<br />
 	    			{{viewStrings.nErr}}
 	    		</div>
@@ -46,9 +46,11 @@
 	    	
 		    <div ng-repeat="key in keys" class="col-xs-12">
 		    	<div class="row">
-				    <h3 class="col-12">{{key.str}}</h2>
+				    <h3 class="col-12" ng-hide="viewStrings.letters[key.js] == ''">
+				    	{{key.str}}<span ng-hide="currentData[key.rb] == undefined">: {{currentData[key.rb]}}</span> 
+				    </h3>
 		    	</div>
-			    <div class="row">
+			    <div class="row" ng-hide="viewStrings.letters[key.js] == ''">
 				    <pre class="col-md-9 col-xs-12 text-center">{{viewStrings.letters[key.js]}}
 {{viewStrings.numbers[key.js]}}
 </pre>
@@ -57,16 +59,26 @@
 
 </pre>
 			    </div>
+			    <ol>
+			    	
+			    	<!-- <input placeholder="filter" ng-model="f" />    		 -->
+			    	<div ng-repeat="entry in responseData[key.rb] ">
+				    	<li>
+				    		{{entry.name}}
+				    		<ul>
+				    			<li>Date of Birth: {{entry.birthday}}</li>
+				    			<li ng-repeat="k in keys"> {{k.str}}: {{entry[k.rb][entry[k.rb].length - 1]}}</li>
+				    			<li>mrd index:{{entry.mrd_index}}
+				    		</ul>
+				    	</li>
 
-		    	<div ng-repeat="entry in responseData[key.rb]">    		
-			    	<li>
-			    		{{entry.name}}
-			    		<ul>
-			    			<li>Date of Birth: {{entry.birthday}}</li>
-			    			<li ng-repeat="key in keys"> {{key.str}}: {{entry[key.rb][entry[key.rb].length - 1]}}</li>
-			    		</ul>
-			    	</li>
-		    	</div>
+			    	</div>
+			    </ol>
+			    <form name="{{'more' + key.rb }}" ng-submit="getMoreNames(key.rb, currentData[key.rb], limit )" ng-hide="responseData[key.rb]==undefined">
+				    <div loading-indicator></div>
+			    	<input type="number" ng-model="limit" placeholder="10">
+				   	<button class="btn" type="submit" >more names</button>
+				</form>
 		    </div>
 		    {{responseError}}
 	    </div>

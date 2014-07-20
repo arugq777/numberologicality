@@ -1,6 +1,41 @@
 angular.module('numberologicality')
   .controller('HomeController', ['$scope', '$http', function ($scope, $http) {
   }])
+          .config(function($httpProvider) {
+
+            $httpProvider.interceptors.push(function($q, $rootScope) {
+                return {
+                    'request': function(config) {
+                        $rootScope.$broadcast('loading-started');
+                        return config || $q.when(config);
+                    },
+                    'response': function(response) {
+                        $rootScope.$broadcast('loading-complete');
+                        return response || $q.when(response);
+                    }
+                };
+            });
+
+        })
+
+
+        .directive("loadingIndicator", function() {
+            return {
+                restrict : "A",
+                template: "<div>Loading...</div>",
+                link : function(scope, element, attrs) {
+                    scope.$on("loading-started", function(e) {
+                        element.css({"display" : ""});
+                    });
+
+                    scope.$on("loading-complete", function(e) {
+                        element.css({"display" : "none"});
+                    });
+
+                }
+            };
+        })
+
   .controller('NumbersController', ['$scope', '$http', function ($scope, $http) {
 
   var uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -94,13 +129,9 @@ angular.module('numberologicality')
     //   ns.nErr = "Name is required.";
     // }
 
-    if( $scope.inputform.nameinput.$error.pattern ){
-      ns.nErr = "Invalid characters in name input field.";
-    }
-
-    if(!$scope.inputform.nameinput.$valid){
+    if(!$scope.inputform.nameinput.$valid || $scope.inputform.nameinput.$error.pattern){
       clearNameStrings(); 
-      ns.nErr = "Name is required.";
+      ns.nErr = "Valid name is required.";
     } else {
       cleanNameInputString();
       formatStrings(nm.input);
@@ -108,6 +139,11 @@ angular.module('numberologicality')
       calculateNameNumbers();
       formatNameNumStrings();
     }
+
+    // if(  ){
+    //   // clearNameStrings();
+    //   ns.nErr = "Invalid characters in name input field.";
+    // }
     
 
   };
@@ -134,30 +170,69 @@ angular.module('numberologicality')
     }
   };
 
-  $scope.submitForm = function(item, event){
+  $scope.submitForm = function(){
     //console.log($scope.modelData)
     var data = {
       "raw_name_input" : nm.rawInput,
-      "name" : nm.input,
+      "name"           : nm.input,
       "raw_date_input" : nm.rawDateInput,
-      "birthday" : nm.dateInput,
-      "whole_name" : nm.wholeName,
-      "vowel" : nm.vowel,
-      "consonant" : nm.consonant,
-      "birthdate" : nm.birthdate,
+      "birthday"       : nm.dateInput,
+      "whole_name"     : nm.wholeName,
+      "vowel"          : nm.vowel,
+      "consonant"      : nm.consonant,
+      "birthdate"      : nm.birthdate,
     };
+    $scope.currentData = { 
+      "name"           : nm.input,
+      "birthday"       : nm.dateInput,     
+      "whole_name"     : nm.wholeName[nm.wholeName.length - 1],
+      "vowel"          : nm.vowel[nm.vowel.length - 1],
+      "consonant"      : nm.consonant[nm.consonant.length - 1],
+      "birthdate"      : nm.birthdate[nm.birthdate.length - 1],
+    };
+
     console.log(data);
-    var response = $http.post('/json', data, {});
-    response.success(function(responseData, status, headers, config) {
-      $scope.responseData = responseData;
-      //console.log(responseData);
+    if( $scope.inputform.nameinput.$valid ){      
+      var response = $http.post('/json', data, {});
+      response.success(function(responseData, status, headers, config) {
+        $scope.responseData = responseData;
+        //console.log(responseData);
+        //console.log(typeof(responseData));
+      });
+      response.error(function(data, status, headers, config) {
+        $scope.responseError = data;
+        alert("Submitting form failed!");
+      });
+    }
+
+  };
+
+  $scope.getMoreNames = function(key, number, limit){
+    if( limit == undefined ){
+      limit = 10;
+    }
+
+    var data = {  "key"   : key, 
+                  "number": number,
+                  "index" : $scope.responseData[key].length,
+                  "limit" : limit
+                };
+    console.log("gmn:" + " key " + key + " number " + number + " limit " + limit);
+    var response = $http.post('/json/more', data, {});
+    response.success(function(moreResponseData, status, headers, config) {
+      for(var i = 0; i < moreResponseData.length; i++){
+        moreResponseData[i].mrd_index = i;
+      }
+      $scope.responseData[key] = $scope.responseData[key].concat(moreResponseData);
+      console.log(moreResponseData);
       //console.log(typeof(responseData));
     });
-    response.error(function(data, status, headers, config) {
-      $scope.responseError = data;
-      alert("Submitting form failed!");
-    });
-  };
+    // response.error(function(data, status, headers, config) {
+    //   $scope.responseError = data;
+    //   alert("Submitting form failed!");
+    // });
+
+  }
 
   function cleanNameInputString(){
     nm.input = "";

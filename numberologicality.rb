@@ -34,10 +34,17 @@ Mongoid.load!("db/mongoid.yml", :development)
     erb :index
   end
 
+  post "/json/more" do
+    puts "/more JSON parse: #{JSON.parse(request.body.string)}"
+    data = JSON.parse(request.body.string)
+    @more = Profile.where(data["key"] => data["number"]).skip(data["index"]).limit(data["limit"])
+    @more.to_json
+  end
+
   post '/json' do
-    #puts "params: #{params}"
-    #puts "request body: #{request.body.string}"
-    puts "JSON parse: #{JSON.parse(request.body.string)}"
+    # params.each { |k,v| puts "params: #{k}, #{v}"}
+    # puts "request params: #{request.params}"
+    # puts "JSON parse: #{JSON.parse(request.body.string)}"
     data = JSON.parse(request.body.string)
     @chump = Person.new("","").create_profile
     data.each do |key, data|
@@ -47,9 +54,9 @@ Mongoid.load!("db/mongoid.yml", :development)
     @chump[:user_agent] = request.user_agent
     @chump[:post_data] = request.POST.to_s
     #@chump.save!
-    data.each_key do |k|
-      puts "chump #{k}: #{@chump[k]}"
-    end
+    # data.each_key do |k|
+    #   puts "chump #{k}: #{@chump[k]}"
+    # end
     @kindred = {}
     [:whole_name, :vowel, :consonant, :birthdate].each do |k|
       @kindred[k] = Profile.where(k => @chump[k].last).limit(10)
