@@ -4,6 +4,14 @@ gem 'sinatra'
 gem 'sinatra-partial'
 gem 'thin'
 
+gem 'mongoid'
+
+gem 'pg'
+gem 'activerecord'
+gem 'sinatra-activerecord'
+
+
+
 group :development do
   gem 'foreman'
   gem 'heroku'

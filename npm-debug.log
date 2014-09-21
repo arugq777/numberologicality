@@ -1,0 +1,119 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'angular-animate' ]
+2 info using npm@1.4.13
+3 info using node@v0.10.28
+4 verbose cache add [ 'angular-animate', null ]
+5 verbose cache add name=undefined spec="angular-animate" args=["angular-animate",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'angular-animate',
+6 verbose parsed url   path: 'angular-animate',
+6 verbose parsed url   href: 'angular-animate' }
+7 silly lockFile cecbb797-angular-animate angular-animate
+8 verbose lock angular-animate /home/gq/.npm/cecbb797-angular-animate.lock
+9 silly lockFile cecbb797-angular-animate angular-animate
+10 silly lockFile cecbb797-angular-animate angular-animate
+11 verbose addNamed [ 'angular-animate', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 509311d3-angular-animate angular-animate@
+14 verbose lock angular-animate@ /home/gq/.npm/509311d3-angular-animate.lock
+15 silly addNameRange { name: 'angular-animate', range: '*', hasData: false }
+16 verbose url raw angular-animate
+17 verbose url resolving [ 'https://registry.npmjs.org/', './angular-animate' ]
+18 verbose url resolved https://registry.npmjs.org/angular-animate
+19 info trying registry request attempt 1 at 03:35:23
+20 verbose etag "EHRJFY6XXXUO3013A9UE7H4CB"
+21 http GET https://registry.npmjs.org/angular-animate
+22 http 304 https://registry.npmjs.org/angular-animate
+23 silly registry.get cb [ 304,
+23 silly registry.get   { date: 'Tue, 22 Jul 2014 08:35:24 GMT',
+23 silly registry.get     server: 'Apache',
+23 silly registry.get     via: '1.1 varnish',
+23 silly registry.get     'last-modified': 'Tue, 22 Jul 2014 08:35:24 GMT',
+23 silly registry.get     'cache-control': 'max-age=60',
+23 silly registry.get     etag: '"EHRJFY6XXXUO3013A9UE7H4CB"',
+23 silly registry.get     'x-served-by': 'cache-ord1721-ORD',
+23 silly registry.get     'x-cache': 'HIT',
+23 silly registry.get     'x-cache-hits': '1',
+23 silly registry.get     'x-timer': 'S1406018124.158109,VS0,VE0',
+23 silly registry.get     vary: 'Accept',
+23 silly registry.get     'content-length': '0',
+23 silly registry.get     'keep-alive': 'timeout=10, max=50',
+23 silly registry.get     connection: 'Keep-Alive' } ]
+24 verbose etag angular-animate from cache
+25 silly addNameRange number 2 { name: 'angular-animate', range: '*', hasData: true }
+26 silly addNameRange versions [ 'angular-animate',
+26 silly addNameRange   [ '0.0.1', '0.0.2', '1.2.19-build.256', '1.2.16' ] ]
+27 verbose addNamed [ 'angular-animate', '1.2.16' ]
+28 verbose addNamed [ '1.2.16', '1.2.16' ]
+29 silly lockFile 72758193-angular-animate-1-2-16 angular-animate@1.2.16
+30 verbose lock angular-animate@1.2.16 /home/gq/.npm/72758193-angular-animate-1-2-16.lock
+31 silly lockFile 72758193-angular-animate-1-2-16 angular-animate@1.2.16
+32 silly lockFile 72758193-angular-animate-1-2-16 angular-animate@1.2.16
+33 silly lockFile 509311d3-angular-animate angular-animate@
+34 silly lockFile 509311d3-angular-animate angular-animate@
+35 silly resolved [ { name: 'angular-animate',
+35 silly resolved     version: '1.2.16',
+35 silly resolved     main: './angular-animate.js',
+35 silly resolved     description: 'This repo is for distribution on `bower`. The source for this module is in the [main AngularJS repo](https://github.com/angular/angular.js/tree/master/src/ngAnimate). Please file issues and pull requests against that repo.',
+35 silly resolved     _id: 'angular-animate@1.2.16',
+35 silly resolved     _shasum: '061cfb35dc364f1746aeaf19da554b9e714b6d4d',
+35 silly resolved     _from: 'angular-animate@',
+35 silly resolved     _npmVersion: '1.4.9',
+35 silly resolved     _npmUser: { name: 'ws-malysheva', email: 'ws.malysheva@gmail.com' },
+35 silly resolved     maintainers: [ [Object], [Object] ],
+35 silly resolved     dist:
+35 silly resolved      { shasum: '061cfb35dc364f1746aeaf19da554b9e714b6d4d',
+35 silly resolved        tarball: 'http://registry.npmjs.org/angular-animate/-/angular-animate-1.2.16.tgz' },
+35 silly resolved     directories: {},
+35 silly resolved     _resolved: 'https://registry.npmjs.org/angular-animate/-/angular-animate-1.2.16.tgz',
+35 silly resolved     readme: 'ERROR: No README data found!' } ]
+36 info install angular-animate@1.2.16 into /usr/local/lib
+37 info installOne angular-animate@1.2.16
+38 info /usr/local/lib/node_modules/angular-animate unbuild
+39 verbose tar unpack /home/gq/.npm/angular-animate/1.2.16/package.tgz
+40 silly lockFile 1e988f73-lib-node-modules-angular-animate tar:///usr/local/lib/node_modules/angular-animate
+41 verbose lock tar:///usr/local/lib/node_modules/angular-animate /home/gq/.npm/1e988f73-lib-node-modules-angular-animate.lock
+42 silly lockFile 5ea1ba43-gular-animate-1-2-16-package-tgz tar:///home/gq/.npm/angular-animate/1.2.16/package.tgz
+43 verbose lock tar:///home/gq/.npm/angular-animate/1.2.16/package.tgz /home/gq/.npm/5ea1ba43-gular-animate-1-2-16-package-tgz.lock
+44 silly gunzTarPerm modes [ '755', '644' ]
+45 error Error: EACCES, mkdir '/usr/local/lib/node_modules/angular-animate'
+45 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/angular-animate']
+45 error   errno: 3,
+45 error   code: 'EACCES',
+45 error   path: '/usr/local/lib/node_modules/angular-animate',
+45 error   fstream_type: 'Directory',
+45 error   fstream_path: '/usr/local/lib/node_modules/angular-animate',
+45 error   fstream_class: 'DirWriter',
+45 error   fstream_stack:
+45 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+45 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53',
+45 error      'Object.oncomplete (fs.js:107:15)' ] }
+46 error Please try running this command again as root/Administrator.
+47 error System Linux 3.13.0-32-generic
+48 error command "node" "/usr/local/bin/npm" "install" "-g" "angular-animate"
+49 error cwd /home/gq/wksp/numberologicality
+50 error node -v v0.10.28
+51 error npm -v 1.4.13
+52 error path /usr/local/lib/node_modules/angular-animate
+53 error fstream_path /usr/local/lib/node_modules/angular-animate
+54 error fstream_type Directory
+55 error fstream_class DirWriter
+56 error code EACCES
+57 error errno 3
+58 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/angular-animate'
+59 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+59 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53
+59 error fstream_stack Object.oncomplete (fs.js:107:15)
+60 verbose exit [ 3, true ]

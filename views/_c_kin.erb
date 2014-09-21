@@ -1,9 +1,25 @@
-<%= "#{@kindred[:consonant].count} have the number #{@chump.consonant.last}:" %>
+<%= "Others with the #{k.to_s} number #{@chump.consonant.last}:" %>
 
 <ul>
-  <% @kindred[:consonant].each do |c|%>
+  <% @kindred[k].each do |l|%>
     <li>
-      <%= c.name %>
+    	<%= l.name %>
     </li>
+	<li>
+    	<%= l.birthday %>
+	</li>
+	<li>
+    	<%= l.whole_name.last %>
+	</li>
+	<li>
+    	<%= l.consonant.last %>
+	</li>
+	<li>
+    	<%= l.vowel.last %>
+	</li>
+	<li>
+    	<%= l.birthdate.last %>
+	</li>
+
   <% end %>
 </ul>

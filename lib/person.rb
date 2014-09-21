@@ -1,8 +1,8 @@
 require 'date'
 require 'mongoid'
+require 'sinatra/activerecord'
 
 class Person
-  # include Mongoid::Document
   attr_accessor :name, :birthday, :numbers
   attr_reader :raw_date_input, :raw_name_input
 
@@ -43,17 +43,22 @@ class Person
   #   date = @birthday.strftime("%A, %B %-d %Y")
   # end
 
-  def create_profile
-    profile = Profile.new()
-    self.to_hash.each do |k, v|
-      profile[k] = v
+  def create_profile(db)
+    if db == :mongo
+      profile = MongoNumnut.new() 
+      self.to_hash.each do |k, v|
+        profile[k] = v
+      end
     end
+
+    if db == :pg
+      profile = Numnut.new( self.to_hash )
+    end      
     profile
   end
-
 end
 
-class Profile
+class MongoNumnut
   include Mongoid::Document
   store_in collection: "people", database: "numnuts"
   field :name, type: String 
@@ -65,4 +70,8 @@ class Profile
   field :consonant, type: Array
   field :birthdate, type: Array
   field :ip, type: String
+end
+
+class Numnut < ActiveRecord::Base
+
 end

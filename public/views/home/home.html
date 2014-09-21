@@ -7,96 +7,95 @@
     </div>
 
     <div class="row" ng-controller="NumbersController as numbers" >
-<!-- 		<div class="row">
-			<div class='col-md-6 col-lg-6 text-center' style="font-family:monospace; white-space:pre-wrap;">{{viewStrings.letters.wholeName}}
+<!--    <div class="row">
+      <div class='col-md-6 col-lg-6 text-center' style="font-family:monospace; white-space:pre-wrap;">{{viewStrings.letters.wholeName}}
 {{viewStrings.letters.consonant}}
 {{viewStrings.numbers.consonant}}
 {{viewStrings.letters.vowel}}
 {{viewStrings.numbers.consonant}}
-			</div>
-			<div class='col-md-3 col-lg-3 text-center' style="font-family:monospace; white-space:pre-wrap;">{{viewStrings.letters.birthdate}}
+      </div>
+      <div class='col-md-3 col-lg-3 text-center' style="font-family:monospace; white-space:pre-wrap;">{{viewStrings.letters.birthdate}}
 {{viewStrings.numbers.birthdate}}
-			</div>
-			<div class='col-md-3 col-lg-3 text-center' style="font-family:monospace; white-space:pre-wrap;" ng-repeat="key in keys">{{viewStrings.calculations[key.js]}}</div>
-		</div> -->
+      </div>
+      <div class='col-md-3 col-lg-3 text-center' style="font-family:monospace; white-space:pre-wrap;" ng-repeat="key in keys">{{viewStrings.calculations[key.js]}}</div>
+    </div> -->
 
-	    <form name="inputform" ng-submit="submitForm()">
-	    	<div class="row">
-	    		<div class="col-lg-6 col-md-8 col-xs-12">
-	    			<label for="name">
-	    				name: 
-	    			</label>
-	    			<input class="col-xs-12" type="text" placeholder="your name" name="nameinput" ng-model="ni" ng-change="updateName(ni)" ng-pattern="/^[a-zA-Z!\s]+$/" required>
-	    			<br />
-	    			{{viewStrings.nErr}}
-	    		</div>
-	    		<div class="col-md-4 col-xs-12 ">
-	    			<label for="birthdate">	
-	    				birthdate:
-	    			</label>
-	    			<input class="col-xs-12" type="date" name="dateinput" placeholder="dd/mm/yyyy" ng-model="di" ng-change="updateDate(di)" required><br />
-	    			{{viewStrings.dErr}}
-	    		</div>
-	    	</div>
-	    	<div class="row">
-	    		<button class="btn" type="submit">Save to database</button>
-	    	</div>
-	    </form>
-	    <div class="row col-xs-12">
-	    	
-		    <div ng-repeat="key in keys" class="col-xs-12">
-		    	<div class="row">
-				    <h3 class="col-12" ng-hide="viewStrings.letters[key.js] == ''">
-				    	{{key.str}}<span ng-hide="currentData[key.rb] == undefined">: {{currentData[key.rb]}}</span> 
-				    </h3>
-		    	</div>
-			    <div class="row" ng-hide="viewStrings.letters[key.js] == ''">
-				    <pre class="col-md-9 col-xs-12 text-center">{{viewStrings.letters[key.js]}}
+      <form name="inputform" ng-submit="submitForm()">
+        <div class="row">
+          <div class="col-lg-6 col-md-8 col-xs-12">
+            <label for="name">
+              name: 
+            </label>
+            <input class="col-xs-12" type="text" placeholder="your name" name="nameinput" ng-model="ni" ng-change="updateName(ni)" ng-pattern="/^[a-zA-Z!\s]+$/" required>
+            <br />
+            {{viewStrings.nErr}}
+          </div>
+          <div class="col-md-4 col-xs-12 ">
+            <label for="birthdate"> 
+              birthdate:
+            </label>
+            <input class="col-xs-12" type="date" name="dateinput" placeholder="dd/mm/yyyy" ng-model="di" ng-change="updateDate(di)" required><br />
+            {{viewStrings.dErr}}
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn" type="submit">Save to database</button>
+        </div>
+      </form>
+      <div class="row col-xs-12">
+        
+        <div ng-repeat="key in keys" class="col-xs-12">
+          <div class="row">
+            <h3 class="col-12" ng-hide="viewStrings.letters[key.js] == ''">
+              {{key.str}}<span ng-hide="currentData[key.rb] == undefined">: {{currentData[key.rb]}}</span> 
+            </h3>
+          </div>
+          <div class="row" ng-hide="viewStrings.letters[key.js] == ''">
+<pre class="col-md-9 col-xs-12 text-center">
+{{viewStrings.letters[key.js]}}
 {{viewStrings.numbers[key.js]}}
 </pre>
-				    <pre class="col-md-3 col-xs-12 text-center">
+<pre class="col-md-3 col-xs-12 text-center">
 {{viewStrings.calculations[key.js]}}
-
 </pre>
-			    </div>
-			    <ol>
-			    	
-			    	<!-- <input placeholder="filter" ng-model="f" />    		 -->
-			    	<div ng-repeat="entry in responseData[key.rb] ">
-				    	<li>
-				    		{{entry.name}}
-				    		<ul>
-				    			<li>Date of Birth: {{entry.birthday}}</li>
-				    			<li ng-repeat="k in keys"> {{k.str}}: {{entry[k.rb][entry[k.rb].length - 1]}}</li>
-				    			<li>mrd index:{{entry.mrd_index}}
-				    		</ul>
-				    	</li>
+          </div>
+          <ol class="database-results">
+            <input placeholder="filter" ng-model="f" ng-hide="(viewStrings.letters[key.js] == '' || currentData[key.rb] == undefined)"/>
+            <div ng-repeat="entry in responseData[key.rb] | filter:f">
+              <li>
+                {{entry.name}}
+                <ul>
+                  <li>Date of Birth: {{entry.birthday}}</li>
+                  <li ng-repeat="k in keys"> {{k.str}}: {{entry[k.rb][entry[k.rb].length - 1]}}</li>
+                  <li>mrd index:{{entry.mrd_index}}
+                </ul>
+              </li>
 
-			    	</div>
-			    </ol>
-			    <form name="{{'more' + key.rb }}" ng-submit="getMoreNames(key.rb, currentData[key.rb], limit )" ng-hide="responseData[key.rb]==undefined">
-				    <div loading-indicator></div>
-			    	<input type="number" ng-model="limit" placeholder="10">
-				   	<button class="btn" type="submit" >more names</button>
-				</form>
-		    </div>
-		    {{responseError}}
-	    </div>
+            </div>
+          </ol>
+          <form name="{{'more_'+key.rb+'_'+currentData[key.rb]+'s'}}" ng-submit="getMoreNames(key.rb, currentData[key.rb], limit )" ng-hide="responseData[key.rb]==undefined">
+            <div loading-indicator></div>
+            <input type="number" ng-model="limit" placeholder="10">
+            <button class="btn" type="submit" >more names</button>
+        </form>
+        </div>
+        {{responseError}}
+      </div>
     </div>
 
     <div class="row">
-    	<div class="col-xs-12">
-		    This is a simple numerology application. Given a name and Birthdate, it calculates: 
-		    <ul>
-		      <li>Whole Name Number (known as the Destiny Number or Expression Number)</li>
-		      <li>Vowel Number (known as the Heart's Desire Number or Soul Urge Number)</li>
-		      <li>Consonant Number (known as the Expression Number or Persona Number)</li>
-		      <li>Birthdate Number (known as the Life Path Number or Destiny Number)</li>
-		    </ul> 
-		       
-		    <p>As you might gather from the parenthetical notes, different sources in print and around the web are inconsistent with regards to what to call the numbers, so I just set those aside and gave each a more self-explanatory name.</p>
-		    <p>If you have a consonant in your name that is pronounced as a vowel (typically the 'y' in names like  'Tony' or 'Lynn'), place an exclamation point in front of it (i.e., "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, not that there's any reason to do that. Hey, I don't judge.</p>
-    	</div>
+      <div class="col-xs-12">
+        This is a simple numerology application. Given a name and Birthdate, it calculates: 
+        <ul>
+          <li>Whole Name Number (known as the Destiny Number or Expression Number)</li>
+          <li>Vowel Number (known as the Heart's Desire Number or Soul Urge Number)</li>
+          <li>Consonant Number (known as the Expression Number or Persona Number)</li>
+          <li>Birthdate Number (known as the Life Path Number or Destiny Number)</li>
+        </ul> 
+           
+        <p>As you might gather from the parenthetical notes, different sources in print and around the web are inconsistent with regards to what to call the numbers, so I just set those aside and gave each a more self-explanatory name.</p>
+        <p>If you have a consonant in your name that is pronounced as a vowel (typically the 'y' in names like  'Tony' or 'Lynn'), place an exclamation point in front of it (i.e., "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, not that there's any reason to do that. Hey, I don't judge.</p>
+      </div>
     </div>
 
 </div>

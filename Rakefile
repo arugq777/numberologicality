@@ -1,4 +1,4 @@
-require './app'
+require './numberologicality'
 require 'sinatra/activerecord/rake'
 
 desc "List all routes for this application"

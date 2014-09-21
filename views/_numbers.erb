@@ -1,10 +1,39 @@
 <% @chump ||= Person.new("","").create_profile %>
 <h3>Numbers for <%= @chump.name %>, born on <%= @chump.birthday %></h3>
 
-<ul>
-  <% [:whole_name, :vowel, :consonant, :birthdate].each do |k| %>
-    <li><%= "#{k.to_s.gsub('_',' ').capitalize}: #{@chump[k].last}" %>.<br> 
-        <%= "#{@kindred[k].count} others in the database have this number." %>
-    </li>
-  <%end%>
-</ul>
+<% [:whole_name, :vowel, :consonant, :birthdate].each do |k| %>
+  <ul>
+    <li><%= "#{k.to_s.gsub('_',' ').capitalize}: #{@chump[k].last}" %>.<br></li>
+  </ul>
+<%end%>
+    
+<% [:whole_name, :vowel, :consonant, :birthdate].each do |k| %>
+  <%= "Others with the #{k.to_s} number #{@chump[k].last}:" %>
+  <ul>
+    <% @kindred[k].each do |l|%>
+      <li>
+        <%= l.name %>
+      </li>
+      <ul>
+        <li>
+          Birthday: <%= l.birthday %>
+        </li>
+        <li>
+          Whole name: <%= l.whole_name.last %>
+        </li>
+        <li>
+          Consonant: <%= l.consonant.last %>
+        </li>
+        <li>
+          Vowel: <%= l.vowel.last %>
+        </li>
+        <li>
+          Birthdate: <%= l.birthdate.last %>
+        </li>
+      </ul>
+
+    <% end %>
+  </ul>
+<%end%>
+
+

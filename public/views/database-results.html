@@ -1,0 +1,28 @@
+<div class="row" ng-hide="viewStrings.letters[key.js] == ''">
+  <pre class="col-md-9 col-xs-12 text-center">{{viewStrings.letters[key.js]}}
+  {{viewStrings.numbers[key.js]}}
+  </pre>
+  <pre class="col-md-3 col-xs-12 text-center">
+  {{viewStrings.calculations[key.js]}}
+
+  </pre>
+</div>
+<ol>
+  <input placeholder="filter" ng-model="f" ng-hide="(viewStrings.letters[key.js] == '' || currentData[key.rb] == undefined)"/>
+  <div ng-repeat="entry in responseData[key.rb] | filter:f">
+    <li>
+      {{entry.name}}
+      <ul>
+        <li>Date of Birth: {{entry.birthday}}</li>
+        <li ng-repeat="k in keys"> {{k.str}}: {{entry[k.rb][entry[k.rb].length - 1]}}</li>
+        <li>mrd index:{{entry.mrd_index}}
+      </ul>
+    </li>
+
+  </div>
+</ol>
+<form name="{{'more_'+key.rb+'_'+currentData[key.rb]+'s'}}" ng-submit="getMoreNames(key.rb, currentData[key.rb], limit )" ng-hide="responseData[key.rb]==undefined">
+  <div loading-indicator></div>
+  <input type="number" ng-model="limit" placeholder="10">
+  <button class="btn" type="submit" >more names</button>
+</form>

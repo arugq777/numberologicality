@@ -24,8 +24,9 @@ class Tabulaticate
             @vowel_count[ @l.letter ] += 1
           end
         end
-      end 
+      end
     end
+    @parsed = {all: @total_count, vowels: @vowel_count, consonants: @consonant_count}
   end
 
   def self.tabulate(count_hash)

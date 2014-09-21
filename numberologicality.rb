@@ -4,6 +4,10 @@ require_relative "lib/person.rb"
 require "date"
 require "sinatra"
 require "mongoid"
+require "pg"
+require 'sinatra/activerecord'
+require './environments'
+#require "activerecord"
 #require "slim"
 #require "sass"
 
@@ -13,15 +17,52 @@ Mongoid.load!("db/mongoid.yml", :development)
     erb :index
   end
 
-  post '/' do
-    @chump = Person.new(params[:nameinput], params[:dateinput]).create_profile
+  get '/v2' do
+    erb :index2
+  end
+
+  post '/v2' do
+    @chump = Person.new(params[:nameinput], params[:dateinput]).create_profile(:pg)
     @chump[:ip] = request.ip.to_s + ":" + request.port.to_s
     @chump[:user_agent] = request.user_agent
     @chump[:post_data] = request.POST.to_s
-    @chump.save!
+    [:whole_name, :vowel, :consonant, :birthdate].each do |k|
+      puts "chump: #{@chump[k]}"
+    end
+
+    if Numnut.find_by_name_and_birthday(@chump.name, @chump.birthday).nil?
+      @chump.save!
+    else
+      puts "Not saved."
+    end 
+
     @kindred = {}
     [:whole_name, :vowel, :consonant, :birthdate].each do |k|
-      @kindred[k] = Profile.where(k => @chump[k].last).limit(10)
+      @kindred[k] = Numnut.where("#{@chump[k].last} = ANY(#{k.to_s})").limit(10)
+    end
+    
+    erb :index2
+  end
+
+
+  post '/' do
+    @chump = Person.new(params[:nameinput], params[:dateinput]).create_profile(:pg)
+    @chump[:ip] = request.ip.to_s + ":" + request.port.to_s
+    @chump[:user_agent] = request.user_agent
+    @chump[:post_data] = request.POST.to_s
+    [:whole_name, :vowel, :consonant, :birthdate].each do |k|
+      puts "chump: #{@chump[k]}"
+    end
+
+    if Numnut.find_by_name_and_birthday(@chump.name, @chump.birthday).nil?
+      @chump.save!
+    else
+      puts "Not saved."
+    end 
+
+    @kindred = {}
+    [:whole_name, :vowel, :consonant, :birthdate].each do |k|
+      @kindred[k] = Numnut.where("#{@chump[k].last} = ANY(#{k.to_s})").limit(10)
     end
 
     # @sample_kin = {}
@@ -37,7 +78,7 @@ Mongoid.load!("db/mongoid.yml", :development)
   post "/json/more" do
     puts "/more JSON parse: #{JSON.parse(request.body.string)}"
     data = JSON.parse(request.body.string)
-    @more = Profile.where(data["key"] => data["number"]).skip(data["index"]).limit(data["limit"])
+    @more = MongoNumnut.where(data["key"] => data["number"]).skip(data["index"]).limit(data["limit"])
     @more.to_json
   end
 
@@ -46,20 +87,20 @@ Mongoid.load!("db/mongoid.yml", :development)
     # puts "request params: #{request.params}"
     # puts "JSON parse: #{JSON.parse(request.body.string)}"
     data = JSON.parse(request.body.string)
-    @chump = Person.new("","").create_profile
+    @chump = Person.new("","").create_profile(:mongo)
     data.each do |key, data|
       @chump[key] = data
     end
     @chump[:ip] = request.ip.to_s + ":" + request.port.to_s
     @chump[:user_agent] = request.user_agent
     @chump[:post_data] = request.POST.to_s
-    #@chump.save!
-    # data.each_key do |k|
-    #   puts "chump #{k}: #{@chump[k]}"
-    # end
+    @chump.save!
+    data.each_key do |k|
+      puts "chump #{k}: #{@chump[k]}"
+    end
     @kindred = {}
     [:whole_name, :vowel, :consonant, :birthdate].each do |k|
-      @kindred[k] = Profile.where(k => @chump[k].last).limit(10)
+      @kindred[k] = MongoNumnut.where(k => @chump[k].last).limit(10)
     end
     @kindred.to_json
   end

@@ -1,0 +1,41 @@
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="row">
+ 
+        <% [:whole_name, :vowel, :consonant, :birthdate].each do |k| %>
+          <div class="large-3 small-6 columns">
+            <!-- <img src="http://placehold.it/250x250&text=Thumbnail"/> -->
+            <div style="display:table-cell; width:220px;height:220px; font-size:200px; text-align:center; vertical-align:middle;"><%= "#{@chump[k].last}" %></div>
+            <h6 class="panel"><%= "#{k.to_s.gsub('_',' ').capitalize}: #{@chump[k].last}" %></h6>
+              <h5><%= "Other #{k.to_s} #{@chump[k].last}s:" %></h5>
+              <ul>
+                <% @kindred[k].each do |l|%>
+                  <li>
+                    <%= l.name %>
+                  </li>
+                  <ul>
+                    <li>
+                      Birthday: <%= l.birthday %>
+                    </li>
+                    <li>
+                      Whole name: <%= l.whole_name.last %>
+                    </li>
+                    <li>
+                      Consonant: <%= l.consonant.last %>
+                    </li>
+                    <li>
+                      Vowel: <%= l.vowel.last %>
+                    </li>
+                    <li>
+                      Birthdate: <%= l.birthdate.last %>
+                    </li>
+                  </ul>
+                <% end %>
+              </ul>
+          </div>
+        <%end%>
+      </div>
+    </div>
+  </div>
+
+  
