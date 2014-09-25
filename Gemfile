@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'sinatra-partial'
 gem 'thin'
 
+gem 'bson'
 gem 'mongoid'
 
 gem 'pg'
