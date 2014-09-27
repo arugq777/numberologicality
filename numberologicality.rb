@@ -1,12 +1,12 @@
-require_relative "lib/letter.rb"
-require_relative "lib/tabulaticate.rb"
-require_relative "lib/person.rb"
 require "date"
 require "sinatra"
 require "mongoid"
 require "pg"
 require 'sinatra/activerecord'
 require './environments'
+require_relative "lib/letter.rb"
+require_relative "lib/tabulaticate.rb"
+require_relative "lib/person.rb"
 #require "activerecord"
 #require "slim"
 #require "sass"
