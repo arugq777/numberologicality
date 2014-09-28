@@ -11,7 +11,7 @@ require_relative "lib/person.rb"
 #require "slim"
 #require "sass"
 
-Mongoid.load!("db/mongoid.yml", :development)
+Mongoid.load!("db/mongoid.yml", :production)
 #class Numberologicality < Sinatra::Base
   get '/' do
     erb :index
