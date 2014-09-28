@@ -26,9 +26,9 @@ Mongoid.load!("db/mongoid.yml", :production)
     @chump[:ip] = request.ip.to_s + ":" + request.port.to_s
     @chump[:user_agent] = request.user_agent
     @chump[:post_data] = request.POST.to_s
-    [:whole_name, :vowel, :consonant, :birthdate].each do |k|
-      puts "chump: #{@chump[k]}"
-    end
+    # [:whole_name, :vowel, :consonant, :birthdate].each do |k|
+    #   puts "chump: #{@chump[k]}"
+    # end
 
     if Numnut.find_by_name_and_birthday(@chump.name, @chump.birthday).nil?
       @chump.save!
@@ -50,9 +50,9 @@ Mongoid.load!("db/mongoid.yml", :production)
     @chump[:ip] = request.ip.to_s + ":" + request.port.to_s
     @chump[:user_agent] = request.user_agent
     @chump[:post_data] = request.POST.to_s
-    [:whole_name, :vowel, :consonant, :birthdate].each do |k|
-      puts "chump: #{@chump[k]}"
-    end
+    # [:whole_name, :vowel, :consonant, :birthdate].each do |k|
+    #   puts "chump: #{@chump[k]}"
+    # end
 
     if Numnut.find_by_name_and_birthday(@chump.name, @chump.birthday).nil?
       @chump.save!
@@ -76,9 +76,11 @@ Mongoid.load!("db/mongoid.yml", :production)
   end
 
   post "/json/more" do
-    puts "/more JSON parse: #{JSON.parse(request.body.string)}"
+    # puts "/more JSON parse: #{JSON.parse(request.body.string)}"
     data = JSON.parse(request.body.string)
-    @more = MongoNumnut.where(data["key"] => data["number"]).skip(data["index"]).limit(data["limit"])
+    @more = MongoNumnut.where(data["key"] => data["number"])
+                       .skip(data["index"])
+                       .limit(data["limit"])
     @more.to_json
   end
 
@@ -95,9 +97,9 @@ Mongoid.load!("db/mongoid.yml", :production)
     @chump[:user_agent] = request.user_agent
     @chump[:post_data] = request.POST.to_s
     @chump.save!
-    data.each_key do |k|
-      puts "chump #{k}: #{@chump[k]}"
-    end
+    # data.each_key do |k|
+    #   puts "chump #{k}: #{@chump[k]}"
+    # end
     @kindred = {}
     [:whole_name, :vowel, :consonant, :birthdate].each do |k|
       @kindred[k] = MongoNumnut.where(k => @chump[k].last).limit(10)
