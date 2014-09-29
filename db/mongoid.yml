@@ -2,10 +2,10 @@ production:
   sessions:
     default:
       hosts: 
-        - <%= ENV['MHQ_HOST']%>
-      database: <%= ENV['MHQ_DB'] %>
-      username: <%= ENV['MHQ_USR']%>
-      password: <%= ENV['MHQ_PWD']%>
+        - kahana.mongohq.com:10044
+      database: numnuts
+      username: heroku
+      password: notbob1717
       options:
         # skip_version_check: true
         # safe: true
