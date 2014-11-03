@@ -180,7 +180,7 @@ angular.module('numberologicality')
         "birthdate"      : nm.birthdate[nm.birthdate.length - 1],
       };
 
-      console.log(data);
+      //console.log(data);
       if( $scope.inputform.nameinput.$valid ){      
         var response = $http.post('/json', data, {});
         response.success(function(responseData, status, headers, config) {
@@ -206,14 +206,14 @@ angular.module('numberologicality')
                     "index" : $scope.responseData[key].length,
                     "limit" : limit
                   };
-      console.log("gmn:" + " key " + key + " number " + number + " limit " + limit);
+      //console.log("gmn:" + " key " + key + " number " + number + " limit " + limit);
       var response = $http.post('/json/more', data, {});
       response.success(function(moreResponseData, status, headers, config) {
-        for(var i = 0; i < moreResponseData.length; i++){
-          moreResponseData[i].mrd_index = i;
-        }
+        // for(var i = 0; i < moreResponseData.length; i++){
+        //   moreResponseData[i].mrd_index = i;
+        // }
         $scope.responseData[key] = $scope.responseData[key].concat(moreResponseData);
-        console.log(moreResponseData);
+        //console.log(moreResponseData);
         //console.log(typeof(responseData));
       });
       // response.error(function(data, status, headers, config) {
