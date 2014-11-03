@@ -1,0 +1,15 @@
+#mainform input[type=text], #mainform input[type=date]{
+  margin-bottom: 0.25rem;
+}
+#mainform .row{
+  padding-top: 1rem;
+}
+
+.number{
+  display: table-cell; 
+  width: 220px;
+  height: 220px; 
+  font-size: 200px; 
+  text-align: center; 
+  vertical-align: middle;
+}

@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Numberologicality</title>
   <link href="foundation/css/foundation.min.css" rel="stylesheet">
   <link href="css/app2.css" rel="stylesheet">
+  <script src="lib/jquery/dist/jquery.min.js"></script>
+  <script src="foundation/js/foundation/foundation.js"></script>
+  <script src="foundation/js/foundation/foundation.abide.js"></script>
+  <script src="js/app.js"></script>
 </head>
 <body>
 
@@ -17,7 +21,7 @@
           <li class="name">
             <h1>
               <a href="#">
-                Top Bar Title
+                Numberologicality
               </a>
             </h1>
           </li>
@@ -25,7 +29,7 @@
         </ul>
  
         <section class="top-bar-section">
-          <ul class="left">
+<!--           <ul class="left">
             <li><a href="#">Link 1</a></li>
             <li><a href="#">Link 2</a></li>
           </ul>
@@ -40,7 +44,7 @@
             <li class="has-button">
               <a class="small button" href="#">Search</a>
             </li>
-          </ul>
+          </ul> -->
         </section>
       </nav>
  
@@ -52,38 +56,40 @@
  
   <div class="row">
     <div class="large-12 columns">
- 
-     
- 
-<!--       <div class="hide-for-small">
-        <div id="featured"> -->
-                  <form action="/v2" method="post">
-      name: <input type="text" placeholder="your name" name="nameinput"><br>
-      birthdate: <input type="date" name="dateinput"> (defaults to current date if none is selected.)<br>
-      <input type="submit">
-    </form>
-               
-<!--           </div>
-        </div> -->
- 
-     
- 
- 
-     
- 
- 
-<!--     <div class="row">
-      <div class="small-12 show-for-small"><br>
-        <img src="http://placehold.it/1000x600&text=For Small Screens"/>
-      </div>
-    </div> -->
- 
- 
-   
- 
+      <form id="mainform" data-abide action="/v2" method="post">
+        <div class="row">        
+          <div class="medium-8 columns">
+            <label>name:</label>
+            <input type="text" placeholder="your name" name="nameinput" required pattern="[a-zA-Z!\s]+">
+            (only letters, whitespace, and exclamation points allowed)
+            <div class="error"></div>
+          </div>
+          <div class="medium-4 columns">
+            <label>birthdate:</label>
+            <input type="date" name="dateinput" required > 
+            (yyyy-mm-dd; defaults to current date)
+            <div class="error"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-8 small-10 small-centered columns">
+            <!-- <a href="#" class="button expand ">What are your Numbers?</a> -->
+            <input class="large radius button expand" type="submit" value="Click to discover your numbers!">
+          </div>
+        </div>
+      </form>
+      <hr>
     </div>
-  </div><br>
-  <% unless @kindred.nil? %>
+  </div>
+  <% unless settings.chump.nil? %>
+    <div class="row">
+      <div class="large-12 columns">
+        <h2><%= "Numbers for #{settings.chump.name}, born on #{settings.chump.birthday}:" %><h2>
+      </div>  
+    </div>
+  <% end %>
+
+  <% unless settings.kindred.empty? %>
     <%= erb :_numbers_v2 %>
   <% end %>
  
@@ -92,37 +98,39 @@
   <div class="row">
     <div class="large-12 columns">
       <div class="row">
- 
-     
- 
         <div class="large-8 columns">
           <div class="panel radius">
- 
-          <div class="row">
-          <div class="large-6 small-6 columns">
- 
-            <h4>Header</h4><hr/>
-            <h5 class="subheader">Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Donec dignissim nibh fermentum odio ornare sagittis.
-            </h5>
- 
-          <div class="show-for-small" align="center">
-            <a href="#" class="small radius button">Call To Action!</a><br>
- 
-            <a href="#" class="small radius button">Call To Action!</a>
+            <div class="row">
+              <div class="large-6 small-6 columns">
+     
+                <h4>Numberologicality</h4><hr/>
+                <h5 class="subheader">A simple <a href="http://en.wikipedia.org/wiki/Numerology#Number_definitions">numerology</a> calculator.<h5>
+
+                <p>Given a name and Birthdate, it calculates:</p>
+                <ul>
+                  <li>Whole Name Number (known as the Destiny Number or Expression Number)</li>
+                  <li>Vowel Number (known as the Heart's Desire Number or Soul Urge Number)</li>
+                  <li>Consonant Number (known as the Expression Number or Persona Number)</li>
+                  <li>Birthdate Number (known as the Life Path Number or Destiny Number)</li>
+                </ul> 
+     
+                <div class="show-for-small" align="center">
+                  <a href="#" class="small radius button">Call To Action!</a><br>
+       
+                  <a href="#" class="small radius button">Call To Action!</a>
+                </div>
+     
+              </div>
+              <div class="large-6 small-6 columns">
+     
+                <p>As you might gather from the parenthetical notes, different sources in print and around the web are inconsistent with regards to what to call the numbers, so I just set those aside and gave each a more self-explanatory name.</p>
+                <p>If you have a consonant in your name that is pronounced as a vowel (typically the 'y' in names like  'Tony' or 'Lynn'), place an exclamation point in front of it (i.e., "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, not that there's any reason to do that. Hey, I don't judge.</p>
+              </div>
+            </div>
           </div>
- 
-          </div>
-          <div class="large-6 small-6 columns">
- 
-            <p>Suspendisse ultrices ornare tempor. Aenean eget ultricies libero. Phasellus non ipsum eros. Vivamus at dignissim massa. Aenean dolor libero, blandit quis interdum et, malesuada nec ligula. Nullam erat erat, eleifend sed pulvinar ac. Suspendisse ultrices ornare tempor. Aenean eget ultricies libero.
-          </p>
         </div>
  
-        </div>
-        </div>
-        </div>
- 
-          <div class="large-4 columns hide-for-small">
+        <div class="large-4 columns hide-for-small">
  
           <h4>Get In Touch!</h4><hr/>
  
@@ -133,12 +141,7 @@
           <a class="large button expand" href="#">
             Call To Action!
           </a>
- 
- 
         </div>
- 
-     
- 
       </div>
     </div>
   </div>

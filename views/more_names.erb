@@ -1,0 +1,22 @@
+<% @more.each do |l|%>
+  <li>
+    <%= l.name %>
+  </li>
+  <ul>
+    <li>
+      Birthday: <%= l.birthday %>
+    </li>
+    <li>
+      Whole name: <%= l.whole_name.last %>
+    </li>
+    <li>
+      Consonant: <%= l.consonant.last %>
+    </li>
+    <li>
+      Vowel: <%= l.vowel.last %>
+    </li>
+    <li>
+      Birthdate: <%= l.birthdate.last %>
+    </li>
+  </ul>
+<% end %>

@@ -1,16 +1,16 @@
-<% @chump ||= Person.new("","").create_profile %>
-<h3>Numbers for <%= @chump.name %>, born on <%= @chump.birthday %></h3>
+<% settings.chump ||= Person.new("","").create_profile %>
+<h3>Numbers for <%= settings.chump.name %>, born on <%= settings.chump.birthday %></h3>
 
 <% [:whole_name, :vowel, :consonant, :birthdate].each do |k| %>
   <ul>
-    <li><%= "#{k.to_s.gsub('_',' ').capitalize}: #{@chump[k].last}" %>.<br></li>
+    <li><%= "#{k.to_s.gsub('_',' ').capitalize}: #{settings.chump[k].last}" %>.<br></li>
   </ul>
 <%end%>
     
 <% [:whole_name, :vowel, :consonant, :birthdate].each do |k| %>
-  <%= "Others with the #{k.to_s} number #{@chump[k].last}:" %>
+  <%= "Others with the #{k.to_s} number #{settings.chump[k].last}:" %>
   <ul>
-    <% @kindred[k].each do |l|%>
+    <% settings.kindred[k].each do |l|%>
       <li>
         <%= l.name %>
       </li>

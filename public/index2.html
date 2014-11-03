@@ -66,7 +66,17 @@
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
             <h1>Hi.</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+            <p>This is a simple <a href="http://en.wikipedia.org/wiki/Numerology#Number_definitions">numerology</a> application. Given a name and Birthdate, it calculates: 
+            <ul>
+              <li>Whole Name Number (also called the Destiny Number or Expression Number)</li>
+              <li>Vowel Number (also called the Heart's Desire Number or Soul Urge Number)</li>
+              <li>Consonant Number (also called the Expression Number or Persona Number)</li>
+              <li>Birthdate Number (also called the Life Path Number or Destiny Number)</li>
+            </ul> 
+            </p>
+               
+            <p>As you might gather from the parenthetical notes, different sources in print and around the web are inconsistent with regards to what to call the numbers, so I just set those aside and gave each a more self-explanatory name.</p>
+            <p>If you have a consonant in your name that is pronounced as a vowel (typically the 'y' in names like  'Tony' or 'Lynn'), place an exclamation point in front of it (i.e., "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, not that there's any reason to do that. Hey, I don't judge.</p>        
         </header>
         <form name="inputform" ng-submit="submitForm()">
           <div class="row">
@@ -90,7 +100,7 @@
               </div>
             </div>
             <div>
-              <div class="btn btn-primary btn-large col-lg-2 col-md-3 col-xs-12" type="submit">Save to database</div>
+              <div class="btn btn-primary btn-large col-lg-2 col-md-3 col-xs-12" ng-click="submitForm()">Save to database</div>
             </div>
           </div>
         </form>
@@ -99,8 +109,9 @@
 
         <!-- Title -->
         <div class="row">
-            <div class="col-lg-12">
-                <h3>Numbers <span ng-hide="modelData.input=='' || ni == ''">for {{modelData.input}}</span><span ng-hide="(modelData.dateInput==null)||(modelData.dateInput=='Invalid Date')">, born on {{modelData.dateInput}}</span></h3>
+            <div class="col-lg-12" ng-hide="(modelData.input.length==1)||
+(modelData.dateInput=='')||(modelData.dateInput=='Invalid Date')">
+                <h3>Numbers <span ng-hide="modelData.input.length==0">for {{modelData.input}}</span><span ng-hide="(modelData.dateInput=='')||(modelData.dateInput=='Invalid Date')">, born on {{modelData.dateInput}}</span></h3>
             </div>
         </div>
         <!-- /.row -->
@@ -109,8 +120,8 @@
         <div class="row text-center col-xs-12">
           
           <div ng-repeat="key in keys" class="col-lg-3 col-xs-12 col-sm-6 hero-feature">
-            <div class="row" style="height:220px;">
-              <div class="col-xs-12 col-sm-6 col-lg-3" style="display:table-cell; width:100%;font-size:200px; text-align:center; vertical-align:middle;" ng-hide="(modelData[key.js] == undefined) || (ni == undefined || di == undefined)">
+            <div class="row numrow">
+              <div class="number col-xs-12 col-sm-6 col-lg-3" ng-hide="(modelData[key.js] == undefined) || (ni == undefined || di == undefined)">
                 {{modelData[key.js][modelData[key.js].length-1]}}
               </div>
             </div>
@@ -129,7 +140,7 @@
 {{viewStrings.calculations[key.js]}}
 </pre>
             </div>
-            <ol class="database-results">
+            <ol class="database-results" style="text-align:left">
               <input placeholder="filter" ng-model="f" ng-hide="(viewStrings.letters[key.js] == '' || currentData[key.rb] == undefined)"/>
               <div ng-repeat="entry in responseData[key.rb] | filter:f">
                 <li>
@@ -152,61 +163,6 @@
           {{responseError}}
         </div>
 
-<!--             <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/800x500" alt="">
-                    <div class="caption">
-                        <h3>Feature Label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                        </p>
-                    </div>
-                </div>
-            </div> -->
-
-        
-        <!-- /.row -->
-
         <hr>
 
         <!-- Footer -->
@@ -228,11 +184,10 @@
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular-resource/angular-resource.js"></script>
   <script src="lib/angular-route/angular-route.js"></script>
-  <!-- <script src="lib/angular-animate/angular-animate.js"></script> -->
   <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="lib/angular-ui-date/src/date.js"></script>
 
-  <script src="js/app.js"></script>
+  <script src="js/ng-app.js"></script>
   <script src="js/home/home-controller.js"></script>
   <script src="js/numbers/numbers-controller.js"></script>
 </body>

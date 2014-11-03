@@ -10,11 +10,11 @@
       birthdate: <input type="date" name="dateinput"> (defaults to current date if none is selected.)<br>
       <input type="submit">
     </form>
-    <% unless @kindred.nil? %>
+    <% unless settings.kindred.nil? %>
       <%= erb :_numbers %>
 
     <% end %>
-    This is a simple numerology application. Given a name and Birthdate, it calculates: 
+    This is a simple <a href="http://en.wikipedia.org/wiki/Numerology">numerology</a> application. Given a name and Birthdate, it calculates: 
     <ul>
       <li>Whole Name Number (also called the Destiny Number or Expression Number)</li>
       <li>Vowel Number (also called the Heart's Desire Number or Soul Urge Number)</li>
@@ -23,6 +23,6 @@
     </ul> 
        
     <p>As you might gather from the parenthetical notes, different sources in print and around the web are inconsistent with regards to what to call the numbers, so I just set those aside and gave each a more self-explanatory name.</p>
-    <p>If you have a consonant in your name that is pronounced as a vowel (typically the 'y' in names like  'Tony' or 'Lynn'), place an exclamation point in front of it (i.e., "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, but there aren't any circumstances in which a "real" numerologist would do this.</p>
+    <p>If you have a consonant in your name that is pronounced as a vowel (typically the 'y' in names like  'Tony' or 'Lynn'), place an exclamation point in front of it (i.e., "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, but there aren't any circumstances in which a real numerologist would do this.</p>
   </body>
 </html>

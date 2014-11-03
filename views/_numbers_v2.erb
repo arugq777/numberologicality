@@ -5,11 +5,11 @@
         <% [:whole_name, :vowel, :consonant, :birthdate].each do |k| %>
           <div class="large-3 small-6 columns">
             <!-- <img src="http://placehold.it/250x250&text=Thumbnail"/> -->
-            <div style="display:table-cell; width:220px;height:220px; font-size:200px; text-align:center; vertical-align:middle;"><%= "#{@chump[k].last}" %></div>
-            <h6 class="panel"><%= "#{k.to_s.gsub('_',' ').capitalize}: #{@chump[k].last}" %></h6>
-              <h5><%= "Other #{k.to_s} #{@chump[k].last}s:" %></h5>
-              <ul>
-                <% @kindred[k].each do |l|%>
+            <div class="number"><%= "#{settings.chump[k].last}" %></div>
+            <h6 class="panel"><%= "#{k.to_s.gsub('_',' ').capitalize}: #{settings.chump[k].last}" %></h6>
+              <h5><%= "Other #{k.to_s} #{settings.chump[k].last}s:" %></h5>
+              <ul class='names <%= "#{k.to_s}" %>' >
+                <% settings.kindred[k].each do |l|%>
                   <li>
                     <%= l.name %>
                   </li>
@@ -29,9 +29,15 @@
                     <li>
                       Birthdate: <%= l.birthdate.last %>
                     </li>
-                  </ul>
+                  </ul> 
                 <% end %>
               </ul>
+              <form class=<%= k.to_s %> action="/v2/more" method="POST">
+                <input type="hidden" name="key" value=<%= k.to_s %>>
+                <input type="hidden" name="number" value=<%= settings.chump[k].last %>>
+                <input name="qty" type="number" placeholder="10" value="10">
+                <button class="btn" type="submit" >more names</button>
+              </form>
           </div>
         <%end%>
       </div>
