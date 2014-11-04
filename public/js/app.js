@@ -27,7 +27,7 @@ $(document).ready( function(){
 });
 
 function getMoreNames(ev, form, name){
-  console.log(form);
+  //console.log(form);
   $.ajax({
     timeout:3000,
     type: form.attr('method'),

@@ -11,7 +11,7 @@ require_relative "lib/person.rb"
 Mongoid.load!("db/mongoid.yml", :production)
 
   set :kindred, {}
-  set :chump, {}
+  set :chump, nil
 
   helpers do 
     def set_kin(data)
@@ -114,7 +114,7 @@ Mongoid.load!("db/mongoid.yml", :production)
 
   post '/v2' do
     settings.kindred = {}
-    settings.chump = {}
+    settings.chump = nil
     post_data(:pg)
     erb :index2
   end

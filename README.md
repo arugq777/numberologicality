@@ -1,14 +1,34 @@
-#Numberologicalicality
-This is a simple numerology calculator I wrote, because I thought it would be pretty easy.
+#Numberologilicality
 
-It calculates the Life Path Number (sometimes known called the Destiny Number), Destiny Number,(sometimes called the Expression Number), Soul Urge (sometime's called the Heart's Desire Number), and Persona numbers. Consonants and vowels can have their classifications switched by placing a "!" in front of the letter you want to change. For instance, "Timm!y" would have the "y" counted as a vowel, rather than as a consonant. If you want to go nuts with it, "!T!i!m!m!y" would calculate "tmmy" as vowels and "i" as a consonant.
+A basic numerology calculator, written mostly as a coding exercise. Given a name and Birthdate, it calculates:
 
-I haven't included interpretations for the various meanings of one's numbers, because A) I'm not a numerologist, and B) I don't actually care or believe in this stuff :-P A Google search should suffice if anyone actually wants to find out what the numbers supposedly mean.
+- Whole Name Number (known as the Destiny Number or Expression Number)
+- Vowel Number (known as the Heart's Desire Number or Soul Urge Number)
+- Consonant Number (known as the Expression Number or Persona Number)
+- Birthdate Number (known as the Life Path Number or Destiny Number)
+
+As you might gather from the parenthetical notes, different sources in print and around the web are inconsistent with regards to what to call the numbers, so I just set those aside and gave each a more self-explanatory name.
+
+If you have a consonant in your name that is pronounced as a vowel (typically the 'y' in names like  'Tony' or 'Lynn'), place an exclamation point in front of it (i.e., "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, not that there's any reason to do that. Hey, I don't judge.
 
 ##Try it
-http://tranquil-mesa-2581.herokuapp.com/
+
+There are a few different versions, roughly tracing the project's evolution:
+
+##### Rough, original Sinatra version
+
+- http://tranquil-mesa-2581.herokuapp.com/
+
+##### Prettier version with SQL database, using Foundation and Postgres/ActiveRecord
+
+- http://tranquil-mesa-2581.herokuapp.com/v2
+
+##### Immediate feedback version using AngularJS, MongoDB/Mongoid, and Bootstrap
+
+ - http://tranquil-mesa-2581.herokuapp.com/index2.html
+
 
 ##TODO
-- I should probably write tests.
-- Add some basic databse functionality to the back end
-- Tweak the UI
+- Write a Node.js version, and move the Angular code there.
+- Write tests.
+- Convert templates to slim or haml

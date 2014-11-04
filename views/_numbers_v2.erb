@@ -8,7 +8,7 @@
             <div class="number"><%= "#{settings.chump[k].last}" %></div>
             <h6 class="panel"><%= "#{k.to_s.gsub('_',' ').capitalize}: #{settings.chump[k].last}" %></h6>
               <h5><%= "Other #{k.to_s} #{settings.chump[k].last}s:" %></h5>
-              <ul class='names <%= "#{k.to_s}" %>' >
+              <ol class='names <%= "#{k.to_s}" %>' >
                 <% settings.kindred[k].each do |l|%>
                   <li>
                     <%= l.name %>
