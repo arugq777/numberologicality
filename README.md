@@ -32,3 +32,4 @@ There are a few different versions, roughly tracing the project's evolution:
 - Write a Node.js version, and move the Angular code there.
 - Write tests.
 - Convert templates to slim or haml
+- Perhaps add clickable interpretations to the big numbers, or links to daily readings, or something

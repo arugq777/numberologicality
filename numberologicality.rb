@@ -10,6 +10,7 @@ require_relative "lib/person.rb"
 
 Mongoid.load!("db/mongoid.yml", :production)
 
+class NumberologicalityApp < Sinatra::Base
   set :kindred, {}
   set :chump, nil
 
@@ -82,8 +83,8 @@ Mongoid.load!("db/mongoid.yml", :production)
         # puts "params['qty']: #{params["qty"]}"
         # puts "params['number']: #{params["number"]}"
         more = Numnut.where("#{params['number'].to_s} = ANY(#{params['key'].to_s})")
-                      .offset(settings.kindred[params["key"].to_sym].count)
-                      .limit(params["qty"].to_i)
+                     .offset(settings.kindred[params["key"].to_sym].count)
+                     .limit(params["qty"].to_i)
         # puts more
         settings.kindred[params["key"].to_sym] += more
       elsif db == :mongo
@@ -95,13 +96,13 @@ Mongoid.load!("db/mongoid.yml", :production)
       more
     end
 
-    def mongo_query(q)
+    # def mongo_query(q)
+    #   puts "not yet implemented"
+    # end
 
-    end
-
-    def pg_query(q)
-
-    end
+    # def pg_query(q)
+    #   puts "not yet implemented"
+    # end
   end
 
   get '/' do
@@ -121,7 +122,7 @@ Mongoid.load!("db/mongoid.yml", :production)
 
   post '/v2/more' do
     @more = more_results(:pg)
-    puts "kindred count: #{settings.kindred[params['key'].to_sym].count}"
+    # puts "kindred count: #{settings.kindred[params['key'].to_sym].count}"
     erb :more_names
   end
 
@@ -139,3 +140,6 @@ Mongoid.load!("db/mongoid.yml", :production)
     post_data(:mongo)
     settings.kindred.to_json
   end
+end
+
+NumberologicalityApp.start!

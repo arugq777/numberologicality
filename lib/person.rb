@@ -73,5 +73,4 @@ class MongoNumnut
 end
 
 class Numnut < ActiveRecord::Base
-
 end

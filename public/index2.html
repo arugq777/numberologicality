@@ -79,7 +79,7 @@
             <p>As you might gather from the parenthetical notes, different sources in print and around the web are inconsistent with regards to what to call the numbers, so I just set those aside and gave each a more self-explanatory name.</p>
             <p>If you have a consonant in your name that is pronounced as a vowel (typically the 'y' in names like  'Tony' or 'Lynn'), place an exclamation point in front of it (i.e., "Larr!y") to calculate it as a vowel. Exclamation points will also switch vowels into consonants if you want, not that there's any reason to do that. Hey, I don't judge.</p>        
         </header>
-        <form name="inputform" ng-submit="submitForm()">
+        <form id="mainform" name="inputform" ng-submit="submitForm()">
           <div class="row">
             <div class="col-lg-6 col-md-6 col-xs-12">
               <label for="name">
@@ -101,7 +101,7 @@
               </div>
             </div>
             <div>
-              <div class="btn btn-primary btn-large col-lg-2 col-md-3 col-xs-12" ng-click="submitForm()">Save to database</div>
+              <div id="submit_btn" class="btn btn-primary btn-large col-lg-2 col-md-3 col-xs-12" ng-click="submitForm()">Save to database</div>
             </div>
           </div>
         </form>
@@ -170,7 +170,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; blah blah blah 2014</p>
                 </div>
             </div>
         </footer>
